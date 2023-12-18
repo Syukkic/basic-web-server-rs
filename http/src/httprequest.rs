@@ -76,12 +76,12 @@ impl From<String> for HttpRequest {
                 parsed_method = items.next().unwrap().into();
                 parsed_resource = Resource::Path(items.next().unwrap().to_string());
                 parsed_version = items.next().unwrap().into();
-            } else if line.contains(":") {
-                let mut header_elems = line.split(":");
+            } else if line.contains(':') {
+                let mut header_elems = line.split(':');
                 let key = header_elems.next().unwrap().to_string();
                 let value = header_elems.next().unwrap().to_string();
                 parsed_headers.insert(key, value);
-            } else if line.len() == 0 {
+            } else if line.is_empty() {
             } else {
                 parsed_body = line
             }
